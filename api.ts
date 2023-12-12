@@ -6,7 +6,7 @@ export const getAllTodos = async (): Promise<ITask[]> => {
   const res = await fetch(`${baseUrl}/tasks`, {cache: 'no-store'});
   const todos = await res.json();
   return todos;
-}
+};
 
 export const addTodo = async (todo: ITask): Promise<ITask> =>{
   const res = await fetch(`${baseUrl}/tasks`,{
@@ -18,7 +18,7 @@ export const addTodo = async (todo: ITask): Promise<ITask> =>{
   })
   const newTodo = await res.json();
   return newTodo;
-}
+};
 
 export const editTodo = async (todo: ITask): Promise<ITask> =>{
   const res = await fetch(`${baseUrl}/tasks/${todo.id}`,{
@@ -30,7 +30,13 @@ export const editTodo = async (todo: ITask): Promise<ITask> =>{
   })
   const updatedTodo = await res.json();
   return updatedTodo;
-}
+};
+
+export const deleteTodo = async (id: string): Promise<void> =>{
+  await fetch(`${baseUrl}/tasks/${id}`,{
+    method: 'DELETE',
+  })
+};
 
 
 
